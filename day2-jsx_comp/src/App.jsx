@@ -1,11 +1,16 @@
 import React from 'react'
 import About from './About'
+import Card from './Card'
 
 const App = () => {
   return (
     <div>
       <h1>HEllo bhai </h1>
       <About  width = "hello bhai"/>    
+      <Card  >
+        <h1>Hello this is the card  h1</h1>
+        <h2>Hello this is the card  h2</h2>
+      </Card>
     </div>
 
 
