@@ -7,12 +7,6 @@ const Form = () => {
 
     console.log(formData)
 
-    
-  
-    
-
-
-  
 const dataHandling = (e)=> {
     let {name, value} = e.target
     setFormData({...formData, [name] : value})
@@ -36,4 +30,4 @@ const dataHandling = (e)=> {
   )
 }
 
-export default Form
+export default Form 
