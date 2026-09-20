@@ -7,8 +7,8 @@ import UserCard from './components/UserCard'
 const AuthPage = () => {
 
    const [users, setUsers] = useState([])
+   console.log(users)
 
-console.log(users)
 
   const [toggle, setToggle] = useState(false)
 
