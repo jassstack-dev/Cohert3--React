@@ -5,9 +5,6 @@ import {useForm } from 'react-hook-form';
 
 const Form = ({setUser,setToggle}) => {
 
-   
-
-
   const{
     register,
     handleSubmit,
@@ -25,10 +22,6 @@ const Form = ({setUser,setToggle}) => {
    reset()
    
   }
-
-
-
-
 
   return (
     <div className="max-w-m mx-auto my-6 p-5 bg-white border border-gray-200 rounded-xl shadow-xs">
