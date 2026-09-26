@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import FetchApis from './components/FetchApis'
-
+import React, { useContext, useEffect, useState } from "react";
+import FetchApis from "./components/FetchApis";
+import Navbar from "./components/Navbar";
+import CartUi from "./components/CartUi";
+import { MyStore } from "./context/myContext";
 
 const App = () => {
 
-
-
-const [toggle, setToggle] = useState(true)
-const [count, setCount] = useState(0)
-    const [name, setName] = useState("vimal")
-  
-
-
-
+  const {toggle,apiData,cartProduct} = useContext(MyStore)
   return (
+
+
+
     <div>
-      {/* <h1>this is the {count}</h1>
-      <button onClick={()=> setCount(count +1)}>increase</button>
-      <button onClick={()=> setToggle(prev => !prev)} >change toggle state</button>
-      
+      <Navbar />
+
       {
-        toggle ? <Hero/> : <About  />
+        toggle ? <div className="grid grid-cols-4 gap-5 p-5 ">
+        {
+          apiData.map((elem)=>{
+            let isInCart = cartProduct.find((val)=> val.id === elem.id)
+            // console.log(isInCart)
+            return <FetchApis key={elem.id} val={elem} isInCart={isInCart} />
+          })
+        }
+      </div> : <div>
+        <CartUi />
+      </div>
       }
-      <Contact/> */}
 
-      <FetchApis />
+      
+
+      
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
