@@ -7,6 +7,8 @@ const Cart = ({cart}) => {
         return acc + num.price;
     },0)
 
+
+    // for calculate gst 
     let tax = (sum*18)/100;
 
     

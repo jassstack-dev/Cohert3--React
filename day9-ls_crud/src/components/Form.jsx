@@ -1,48 +1,34 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { nanoid } from 'nanoid'
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { nanoid } from "nanoid";
 
-const Form = ({setToggle, setUser, user,UpdatedData}) => {
+const Form = ({ setToggle, setUser, user, UpdatedData }) => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState = { errors },
+  } = useForm({
+    defaultValues: UpdatedData,
+  });
 
+  const formSubmit = (data) => {
+    if (UpdatedData) {
+      const updatedUser = user.map((val) => {
+        return val.id === UpdatedData.id ? { ...data } : val;
+      });
 
-
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState ={errors}
-    } = useForm({
-        defaultValues:UpdatedData
-    })
-
-
-  
-    const formSubmit = (data)=>{
-
-if(UpdatedData){
-    
-        const updatedUser = user.map((val)=>{
-            
-            return val.id === UpdatedData.id ? {...data} : val
-        })
-
-        setUser(updatedUser)
-        localStorage.setItem('user', JSON.stringify(updatedUser))
-        
-
-
-}else{
-            let arr = [...user ,{...data, id:nanoid()}]
- setUser(arr)
-localStorage.setItem('user', JSON.stringify(arr))
-}
-
-
- setToggle(prev => !prev)
- reset()
-             
+      setUser(updatedUser);
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+    } else {
+      let arr = [...user, { ...data, id: nanoid() }];
+      setUser(arr);
+      localStorage.setItem("user", JSON.stringify(arr));
     }
 
+    setToggle((prev) => !prev);
+    reset();
+  };
 
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
@@ -65,9 +51,9 @@ localStorage.setItem('user', JSON.stringify(arr))
               Product Title
             </label>
             <input
-            {...register('title', {
-                required: "title is mandatory"
-            })}
+              {...register("title", {
+                required: "title is mandatory",
+              })}
               type="text"
               placeholder="e.g. Wireless Noise-Canceling Headphones"
               className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
@@ -84,9 +70,9 @@ localStorage.setItem('user', JSON.stringify(arr))
                 ₹
               </span>
               <input
-              {...register('price', {
-                required: "price is mandatory"
-            })}
+                {...register("price", {
+                  required: "price is mandatory",
+                })}
                 type="number"
                 placeholder="2499"
                 className="w-full pl-8 pr-3.5 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
@@ -100,9 +86,9 @@ localStorage.setItem('user', JSON.stringify(arr))
               Image URL
             </label>
             <input
-            {...register('image', {
-                required: "url is mandatory"
-            })}
+              {...register("image", {
+                required: "url is mandatory",
+              })}
               type="url"
               placeholder="https://images.unsplash.com/..."
               className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
@@ -115,9 +101,9 @@ localStorage.setItem('user', JSON.stringify(arr))
               Description
             </label>
             <textarea
-            {...register('description', {
-                required: "description is mandatory"
-            })}
+              {...register("description", {
+                required: "description is mandatory",
+              })}
               rows="4"
               placeholder="Write a clear, concise overview of this product..."
               className="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white text-slate-900 text-sm placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all resize-none"
@@ -127,18 +113,16 @@ localStorage.setItem('user', JSON.stringify(arr))
           {/* Buttons */}
           <div className="pt-2 flex items-center justify-end gap-3">
             <button
-            onClick={function(){
-                setToggle(prev => !prev)
-            }}
-             
+              onClick={function () {
+                setToggle((prev) => !prev);
+              }}
               type="button"
               className="px-4 py-2 text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors"
             >
               Cancel
             </button>
             <button
-            type="submit"
-            
+              type="submit"
               className="px-5 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 active:scale-95 rounded-lg shadow-sm transition-all"
             >
               Save Product
