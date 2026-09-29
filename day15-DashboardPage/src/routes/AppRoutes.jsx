@@ -2,10 +2,12 @@ import React from 'react'
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import AuthLayout from '../layout/AuthLayout';
-import Login from '../pages/login';
+
 import Register from '../pages/Register';
 import Dashboard from '../layout/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
+import Login from '../pages/Login';
+
 
 const AppRoutes = () => {
 

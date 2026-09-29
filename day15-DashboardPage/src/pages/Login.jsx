@@ -5,33 +5,34 @@ import { MyStore } from "../context/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
-
-    const {registerUser, setRegisterUser,loggedInUser, setLoggedInUser} = useContext(MyStore)
-  const { register, handleSubmit, reset, formState : { errors } } = useForm();
+  const { registerUser, setRegisterUser, loggedInUser, setLoggedInUser } =
+    useContext(MyStore);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const navigate = useNavigate();
 
-  function formSubmit(data){
-console.log(data)
-const user = registerUser.find((val)=>{
-    return val.email === data.email && val.password === data.password
-})
+  function formSubmit(data) {
+    console.log(data);
+    const user = registerUser.find((val) => {
+      return val.email === data.email && val.password === data.password;
+    });
 
-if(!user){
-    toast.error('user not found')
-    return
-}
+    if (!user) {
+      toast.error("user not found");
+      return;
+    }
 
-setLoggedInUser(user)
-localStorage.setItem('loggedInUser', JSON.stringify(user))
-toast.success('user logged in successfully')
-navigate('/main')
-
-
-
+    setLoggedInUser(user);
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    toast.success("user logged in successfully");
+    navigate("/main");
   }
 
-  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-lg">
@@ -54,20 +55,18 @@ navigate('/main')
             </label>
 
             <input
-            {...register('email', {
-                required:'email is required'
-            })}
-             
+              {...register("email", {
+                required: "email is required",
+              })}
               id="email"
-              
               placeholder="Enter your email"
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-black focus:ring-1 focus:ring-black"
             />
             {errors.email && (
-  <p className="mt-1 text-sm text-red-500">
-    {errors.email.message}
-  </p>
-)}
+              <p className="mt-1 text-sm text-red-500">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           {/* Password */}
@@ -80,14 +79,13 @@ navigate('/main')
             </label>
 
             <input
-            {...register('password', {
-                required:'password is required',
+              {...register("password", {
+                required: "password is required",
                 minLength: {
-    value: 6,
-    message: "Password must be at least 6 characters",
-  },
-
-            })}
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
               type="password"
               id="password"
               name="password"
@@ -95,17 +93,14 @@ navigate('/main')
               className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm outline-none transition focus:border-black focus:ring-1 focus:ring-black"
             />
             {errors.password && (
-  <p className="mt-1 text-sm text-red-500">
-    {errors.password.message}
-  </p>
-)}
+              <p className="mt-1 text-sm text-red-500">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           {/* Login Button */}
-          <button
-          
-            className="w-full rounded-lg bg-black py-3 font-medium text-white transition hover:bg-gray-800"
-          >
+          <button className="w-full rounded-lg bg-black py-3 font-medium text-white transition hover:bg-gray-800">
             Login
           </button>
         </form>
