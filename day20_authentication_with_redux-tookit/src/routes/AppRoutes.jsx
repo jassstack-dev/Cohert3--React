@@ -11,6 +11,8 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import { addUser } from '../features/AuthSlice'
+import Shop from '../pages/shop'
+import About from '../pages/About'
 
 const AppRoutes = () => {
 
@@ -21,10 +23,10 @@ const AppRoutes = () => {
         const loggedInUSer = JSON.parse(localStorage.getItem('loginUserItem'))
         console.log(loggedInUSer)    
 
-        if(!loggedInUSer){
-            toast.error('user not found use Valid email and password')
-            return
-        }
+        // if(!loggedInUSer){
+        //     toast.error('user not found use Valid email and password')
+        //     return
+        // }
 
         disPatch(addUser(loggedInUSer))
     }
@@ -66,6 +68,14 @@ const AppRoutes = () => {
                         {
                             path:'',
                             element:<Main/>
+                        },
+                        {
+                            path:'shop',
+                            element:<Shop/>
+                        },
+                        {
+                            path:'about',
+                            element:<About/>
                         }
                     ]
                 }
@@ -76,4 +86,4 @@ const AppRoutes = () => {
   return <RouterProvider  router={router} />
 }
 
-export default AppRoutes
+export default AppRoutes 
