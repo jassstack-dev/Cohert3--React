@@ -1,13 +1,17 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Star, ShoppingCart } from 'lucide-react';
-import { productApi } from '../api/getProductApi';
-import { useQuery } from '@tanstack/react-query';
+
 import { useProductApi } from '../hooks/productsHopks';
+import ProductSearch from '../components/ProductSearch';
 
 const Shop = () => {
 
-const {data, isPending, error} = useProductApi()
+const {data, isPending,  searchProducts,
+  filterProduct} = useProductApi()
+console.log("API Data:", data);
+console.log("Search Products:", searchProducts);
+
 
   // Skeleton Card Component
   const SkeletonCard = () => (
@@ -45,6 +49,7 @@ const {data, isPending, error} = useProductApi()
 
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-10">
+      <ProductSearch filterProduct={searchProducts} />
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
