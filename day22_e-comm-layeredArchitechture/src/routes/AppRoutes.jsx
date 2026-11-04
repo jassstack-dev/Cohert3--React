@@ -10,20 +10,18 @@ import Home from '../shared/ui/pages/Home'
 import ProductPage from '../features/products/ui/pages/ProductPage'
 import CartPage from '../features/cart/ui/pages/CartPage'
 import OrderPage from '../features/order/ui/pages/OrderPage'
-import { HydrateApi } from '../features/auth/api/authApi'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../features/auth/state/authSlice'
+import { hydrateUserAction } from '../features/auth/state/authAction'
  
  const AppRoutes = () => {
 
     const dispatch = useDispatch()
 
     useEffect(()=>{
-(async()=>{
+(()=>{
 try{
-    let response = await HydrateApi()
-    console.log(response)
-    dispatch(addUser(response))
+    dispatch(hydrateUserAction())
 }
 catch(error){
     console.log('error in hydration', error)
