@@ -13,6 +13,7 @@ import OrderPage from '../features/order/ui/pages/OrderPage'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../features/auth/state/authSlice'
 import { hydrateUserAction } from '../features/auth/state/authAction'
+import About from '../shared/ui/pages/About'
  
  const AppRoutes = () => {
 
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
                {
                 path:'orderpage',
                 element:<OrderPage/>
+               },
+               {
+                path:'aboutpage',
+                element:<About/>
                }
             ]
         }

@@ -29,7 +29,7 @@ const res = await api.get('/auth/me',{
   }
 })
 console.log('response of hydration api', res)
-toast.success('successfully loggin')
+// toast.success('successfully loggin')
 return res.data
     }catch(error){
         toast.error('error in hydration api')
